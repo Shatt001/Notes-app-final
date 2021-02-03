@@ -1,0 +1,50 @@
+.list {
+  word-break: break-all;
+
+  &__header {
+    background     : $off-white;
+    border         : 1px solid $grey;
+    display        : flex;
+    justify-content: space-between;
+    padding        : $s-size $xs-size;
+    font-weight    : 700;
+    color          : $grey;
+  }
+
+  &__data {
+    background     : white;
+    border         : 1px solid $grey;
+    border-top     : none;
+    display        : flex;
+    justify-content: space-between;
+    padding        : $s-size $xs-size;
+    align-items    : center;
+    transition     : background .3 ease;
+
+    &:hover {
+      background: $off-white;
+    }
+
+    &__container {
+
+      div {
+        display    : flex;
+        align-items: center;
+      }
+
+      &__link {
+        text-decoration: none;
+        font-size      : $font-size-large;
+        font-weight    : bold;
+        color          : black;
+      }
+
+      p {
+        margin-top : $xs-size / 2;
+        font-style : italic;
+        font-weight: 500;
+        color      : $grey;
+      }
+    }
+  }
+}

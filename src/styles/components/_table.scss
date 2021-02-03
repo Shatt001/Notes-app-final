@@ -1,0 +1,24 @@
+.table {
+  width          : 100%;
+  border         : 1px solid black;
+  border-collapse: collapse;
+
+  &__header {
+    border    : 1px solid black;
+    background: $orange;
+
+    th {
+      text-align: left;
+      padding   : 0 $xs-size;
+    }
+  }
+
+  tr:not(.table__header) {
+    border: 1px solid black;
+
+    td {
+      text-align: left;
+      padding   : 0 $xs-size;
+    }
+  }
+}

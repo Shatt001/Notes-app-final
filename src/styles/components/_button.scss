@@ -1,0 +1,39 @@
+.button {
+  background     : $light-orange;
+  color          : white;
+  border         : none;
+  border-radius  : 3px;
+  display        : inline-block;
+  font-weight    : 300;
+  font-size      : $font-size-large;
+  line-height    : 1;
+  padding        : $s-size;
+  transition     : all .2s;
+  text-decoration: none;
+
+
+  &:not(.no-effects):hover {
+    transform : translateY(-.3rem);
+    box-shadow: 0 1rem .5rem rgba($off-black, .2);
+  }
+
+  &:not(.no-effects):active {
+    box-shadow: 0 .75rem .5rem rgba($off-black, .2);
+    transform : translateY(0);
+    outline   : none;
+  }
+
+  &:not(.no-effects):focus {
+    outline   : none;
+    box-shadow: 0 .5rem .5rem rgba($off-black, .2);
+
+  }
+
+  &--remove {
+    background: $grey;
+  }
+}
+
+.no-effects {
+  background: $dark-orange;
+}

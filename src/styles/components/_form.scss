@@ -1,0 +1,24 @@
+.form {
+  display  : flex;
+  flex-flow: column;
+
+  >*:not(:last-child) {
+    margin-bottom: $s-size;
+  }
+
+  &__block {
+    display    : flex;
+    flex-flow  : row;
+    align-items: center;
+
+    button:not(:last-child) {
+      margin-right: $xs-size;
+    }
+  }
+
+  &__error {
+    margin    : 0;
+    font-style: italic;
+    color     : $dark-orange;
+  }
+}

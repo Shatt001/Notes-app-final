@@ -1,0 +1,33 @@
+.box-layout {
+  align-items    : center;
+  position       : relative;
+  height         : 100vh;
+  justify-content: center;
+  width          : 100vw;
+  display        : flex;
+
+
+  &__img-box {
+    background         : url('/images/login-page.jpg');
+    background-position: left 45% top 25%;
+    background-size    : cover;
+    height             : 100%;
+    opacity            : .5;
+    position           : absolute;
+    width              : 100%;
+    z-index            : -10;
+  }
+
+  &__content-box {
+    background   : fade-out($color: white, $amount: .20);
+    border-radius: 3px;
+    padding      : $l-size $m-size;
+    text-align   : center;
+    width        : 27rem;
+
+    &__title {
+      margin     : 0 0 $m-size 0;
+      line-height: 1;
+    }
+  }
+}

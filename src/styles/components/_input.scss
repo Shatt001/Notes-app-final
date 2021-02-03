@@ -1,0 +1,62 @@
+.text-input {
+  border-radius: 2px;
+  border       : 1px solid #dbdbdb;
+  height       : 48px;
+  font-weight  : 300;
+  padding-left : $xs-size / 2;
+
+  &--custom {
+    @media (max-width: $desktop-breakpoint) {
+      width    : 100%;
+      max-width: 316px;
+    }
+  }
+
+  &:focus {
+    outline   : none;
+    box-shadow: 0 .5rem .5rem rgba($off-black, .2);
+  }
+}
+
+.lov-input {
+  @extend .text-input;
+
+  @media (max-width: $desktop-breakpoint) {
+    width    : 100%;
+    max-width: 316px;
+  }
+}
+
+.textarea-input {
+  @extend .text-input;
+  height: 10rem;
+}
+
+.cb-input {
+  width : 2.5rem;
+  height: 2.5rem;
+  margin: 0 2rem 0 0;
+  cursor: pointer;
+
+  &:before {
+    box-sizing: border-box;
+    content   : '';
+    background: #fff;
+    border    : 2px solid #ddd;
+    display   : block;
+    width     : 2.5rem;
+    height    : 2.5rem;
+    padding   : 2px;
+    margin    : 0 2rem 0 0;
+    text-align: center;
+  }
+
+  &:checked:before {
+    background: $light-orange;
+    box-shadow: inset 0px 0px 0px 4px #fff;
+  }
+
+  &--disabled {
+    cursor: default;
+  }
+}
