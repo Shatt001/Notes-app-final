@@ -4,12 +4,16 @@ import { startLogout } from '../actions/auth'
 
 export default () => {
   return (
-    <header>
-      <div>
-        <Link to="/">  Dashboard  </Link>
-        <Link to="/add">  Add  </Link>
-        <Link to="/history">  History  </Link>
-        <button className="button button--link" onClick={() => (startLogout())}>Logout</button>
+    <header className="header">
+      <div className="content-container">
+        <div className="header__content">
+          <Link className="header__title" to="/">
+            <h1>
+              Notes
+            </h1>
+          </Link>
+          <button className="button no-effects" onClick={() => (startLogout())}>Logout</button>
+        </div>
       </div>
     </header>
   )

@@ -24,6 +24,19 @@ const NoteForm = (props) => {
 
   }
 
+  const onRemoveClick = (e) => {
+    e.preventDefault();
+    try {
+      props.dispatchRemove();
+      if (error) {
+        setError('')
+      }
+    } catch (error) {
+      setError('Error Occured on note remove. Error - ' + error)
+    }
+  }
+
+
   const onCheckboxChange = (e) => {
     setStatus(e.target.checked === true ? 'finished' : 'unfinished')
   }
@@ -37,26 +50,34 @@ const NoteForm = (props) => {
   }
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <form className="form" onSubmit={onFormSubmit}>
       <input
-        type="checkbox"
-        checked={status === 'finished' ? true : false}
-        onChange={onCheckboxChange} />
-      <input
+        className="text-input"
         type="text"
         placeholder="Note..."
         value={note}
         onChange={onNoteChange}
       />
       <textarea
+        className="textarea-input"
         placeholder="Description..."
         value={description}
         onChange={onDescriptionChange}
       />
-      <div>
-        <button>{props.buttonPrefix} note</button>
-        {error && <p>{error}</p>}
+      <div className="form__block">
+        <input
+          className="cb-input"
+          type="checkbox"
+          checked={status === 'finished' ? true : false}
+          onChange={onCheckboxChange} />
+        <button className="button">{props.buttonPrefix} note</button>
+        {props.dispatchRemove &&
+          <button
+            className="button button--remove"
+            onClick={onRemoveClick}>Remove
+          </button>}
       </div>
+      {error && <div className="form__error">{error}</div>}
     </form>
   )
 }

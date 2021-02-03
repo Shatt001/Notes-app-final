@@ -7,7 +7,6 @@ import { firebaseEditNote, firebaseRemoveNote, firebaseAddHistory } from '../fir
 
 export default (props) => {
   const { notesState: { payload: notes }, notesDispatch, historyDispatch } = useContext(NotesContext)
-  const [error, setError] = useState('')
   const filteredNote = notes.filter((note) => {
     if (note.id.toString() === props.match.params.id) {
       return true
@@ -15,6 +14,10 @@ export default (props) => {
   })
 
   const onNoteEdit = ({ note, description, status }) => {
+    if (note.toLowerCase().trim() === '' || description.toLowerCase().trim() === '') {
+      throw 'Note and description fields cannot be empty';
+    }
+
     const promise1 = firebaseEditNote(props.match.params.id, note, description, status)
     const promise2 = firebaseAddHistory({ modification: 'Edited', note: filteredNote[0] })
 
@@ -38,25 +41,27 @@ export default (props) => {
         historyDispatch(addHistory(ref.key, 'Removed', filteredNote[0]))
         props.history.push('/')
 
-        if (error) {
-          setError('')
-        }
       }).
       catch((err) => {
-        setError(err)
+        throw err
       })
   }
 
   return (
     <div>
-      <h1>Edit note</h1>
-      <NoteForm
-        dispatch={onNoteEdit}
-        buttonPrefix={'Edit'}
-        editNote={filteredNote[0]}
-      />
-      <button onClick={onNoteRemove}>Remove</button>
-      {error && <p>{error}</p>}
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Edit note</h1>
+        </div>
+      </div>
+      <div className="content-container">
+        <NoteForm
+          dispatch={onNoteEdit}
+          buttonPrefix={'Edit'}
+          editNote={filteredNote[0]}
+          dispatchRemove={onNoteRemove}
+        />
+      </div>
     </div>
   )
 }

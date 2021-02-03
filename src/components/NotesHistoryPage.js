@@ -4,9 +4,12 @@ import LoadingPage from './LoadingPage'
 
 const HistoryItem = ({ history: { modification, note }, ...props }) => {
   return (
-    <div key={props.key} >
-      {modification} {note.status} {note.note} {note.description}
-    </div>
+    <tr key={props.key} >
+      <td>{modification}</td>
+      <td>{note.status}</td>
+      <td>{note.note}</td>
+      <td>{note.description}</td>
+    </tr>
   )
 }
 
@@ -16,18 +19,39 @@ export default () => {
   if (meta.loading) {
     return (
       <div>
-        <h1>History page</h1>
-        <LoadingPage />
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Notes History</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <LoadingPage />
+        </div>
       </div>
+
     )
   }
 
   return (
     <div>
-      <h1>History page</h1>
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Notes History</h1>
+        </div>
+      </div>
       {
         history.length > 0 &&
-        history.map((history) => (<HistoryItem key={history.id} history={history} />))
+        <table className="content-container table">
+          <tr className="table__header">
+            <th>Action</th>
+            <th>Status</th>
+            <th>Note</th>
+            <th>Description</th>
+          </tr>
+          {
+            history.map((history) => (<HistoryItem key={history.id} history={history} />))
+          }
+        </table>
       }
     </div>
   )
